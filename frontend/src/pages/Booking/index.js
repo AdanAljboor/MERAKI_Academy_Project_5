@@ -4,8 +4,7 @@ import {
   setBooking, 
   addBooking, 
   updateBookingById, 
-  updateByUserId , 
-  ReadAllByUserId , 
+  updateByUserId ,  
   deleteById } from "../../Service/redux/reducers/booking"
 import { useDispatch , useSelector } from "react-redux";
 import axios from "axios";
@@ -20,6 +19,7 @@ export default function Booking() {
   // const { serviceProvider_id } = useParams()
 
   const navigate = useNavigate();
+
   const [serviceProvider_id, setServiceProvider_id] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
@@ -98,8 +98,9 @@ export default function Booking() {
             user_id
         })
         .then((result)=>{
-          console.log(result);
+          console.log(result.data);
           dispatch(addBooking(result.data.booking))
+         
             setSuccess(true)
             setMsg(result.data.message)
             Swal.fire({
